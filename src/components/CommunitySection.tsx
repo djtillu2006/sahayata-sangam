@@ -102,7 +102,10 @@ export const CommunitySection = () => {
 
             <Button variant="hero" className="w-full">
               <Users className="w-4 h-4 mr-2" />
-              Join Community
+              <span onClick={() => {
+                // This would typically open a community join modal
+                alert('Join Community feature coming soon!');
+              }}>Join Community</span>
             </Button>
           </div>
 

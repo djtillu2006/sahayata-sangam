@@ -48,9 +48,15 @@ export const HeroSection = ({ onGetStarted }: HeroSectionProps) => {
               className="text-lg px-8 py-4 h-auto shadow-strong hover:shadow-glow"
             >
               <Video className="w-5 h-5 mr-2" />
-              Meet Your AI Therapist
+              Start Session
             </Button>
             <Button 
+              onClick={() => {
+                const element = document.getElementById('community');
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
               variant="outline" 
               size="lg"
               className="text-lg px-8 py-4 h-auto bg-white/10 text-white border-white/30 hover:bg-white hover:text-primary"

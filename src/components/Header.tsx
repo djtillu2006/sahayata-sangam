@@ -1,11 +1,20 @@
 import { Button } from "@/components/ui/button";
-import { Heart, Menu, Phone } from "lucide-react";
+import { Heart, Menu, Phone, User } from "lucide-react";
+import { ThemeToggle } from "./ThemeToggle";
 
 interface HeaderProps {
   onGetStarted: () => void;
+  onProfileClick: () => void;
 }
 
-export const Header = ({ onGetStarted }: HeaderProps) => {
+export const Header = ({ onGetStarted, onProfileClick }: HeaderProps) => {
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-soft">
       <div className="container mx-auto px-6 py-4">
@@ -23,26 +32,35 @@ export const Header = ({ onGetStarted }: HeaderProps) => {
 
           {/* Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#therapy" className="text-foreground hover:text-primary transition-gentle">
+            <button onClick={() => scrollToSection('therapy')} className="text-foreground hover:text-primary transition-gentle">
               AI Therapy
-            </a>
-            <a href="#community" className="text-foreground hover:text-primary transition-gentle">
+            </button>
+            <button onClick={() => scrollToSection('community')} className="text-foreground hover:text-primary transition-gentle">
               Community
-            </a>
-            <a href="#support" className="text-foreground hover:text-primary transition-gentle">
-              Support
-            </a>
-            <a href="#about" className="text-foreground hover:text-primary transition-gentle">
+            </button>
+            <button onClick={() => scrollToSection('about')} className="text-foreground hover:text-primary transition-gentle">
               About
-            </a>
+            </button>
+            <button onClick={() => scrollToSection('support')} className="text-foreground hover:text-primary transition-gentle">
+              Support
+            </button>
           </nav>
 
           {/* CTA Buttons */}
           <div className="flex items-center space-x-4">
+            {/* Theme Toggle */}
+            <ThemeToggle />
+
             {/* Crisis Support */}
             <Button variant="outline" size="sm" className="hidden sm:flex text-destructive border-destructive hover:bg-destructive hover:text-destructive-foreground">
               <Phone className="w-4 h-4 mr-2" />
               Crisis Support
+            </Button>
+
+            {/* Profile */}
+            <Button onClick={onProfileClick} variant="ghost" size="sm" className="hidden sm:flex">
+              <User className="w-4 h-4 mr-2" />
+              Profile
             </Button>
 
             {/* Get Started */}
